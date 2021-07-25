@@ -9,6 +9,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = require('twilio')(accountSid, authToken);
 const cron = require('node-cron');
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -24,7 +25,7 @@ const trueFalseMap = {
 const sendMondayMessages = async () => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "client_secret.json",
+        keyFile: "google-credentials.js",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -57,7 +58,7 @@ const sendMondayMessages = async () => {
 const sendFollowUpMessages = async (range) => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "client_secret.json",
+        keyFile: "google-credentials.js",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -105,7 +106,7 @@ const sendFollowUpMessages = async (range) => {
 
 const sendResults = async (range) => {
     const auth = new google.auth.GoogleAuth({
-        keyFile: "client_secret.json",
+        keyFile: "google-credentials.js",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -201,7 +202,7 @@ cron.schedule('0 20 * * 0', () => {
   app.post('/sms', async (req, res) => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "client_secret.json",
+        keyFile: "google-credentials.js",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -269,6 +270,6 @@ cron.schedule('0 20 * * 0', () => {
 
 
 
-  http.createServer(app).listen(1337, () => {
-    console.log('Express server listening on port 1337');
+  http.createServer(app).listen(port, () => {
+    console.log(`Express server listening on port ${port}`);
   });
