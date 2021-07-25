@@ -25,7 +25,7 @@ const trueFalseMap = {
 const sendMondayMessages = async () => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "google-credentials.js",
+        keyFile: "google-credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -58,7 +58,7 @@ const sendMondayMessages = async () => {
 const sendFollowUpMessages = async (range) => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "google-credentials.js",
+        keyFile: "google-credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -106,7 +106,7 @@ const sendFollowUpMessages = async (range) => {
 
 const sendResults = async (range) => {
     const auth = new google.auth.GoogleAuth({
-        keyFile: "google-credentials.js",
+        keyFile: "google-credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
@@ -202,7 +202,7 @@ cron.schedule('0 20 * * 0', () => {
   app.post('/sms', async (req, res) => {
 
     const auth = new google.auth.GoogleAuth({
-        keyFile: "google-credentials.js",
+        keyFile: "google-credentials.json",
         scopes: "https://www.googleapis.com/auth/spreadsheets"
     })
 
