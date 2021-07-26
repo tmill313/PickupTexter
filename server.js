@@ -164,7 +164,7 @@ const sendResults = async (range) => {
 
 
 // Send out texts every monday at 9AM
-cron.schedule('0 20 * * 0', () => {
+cron.schedule('32 20 * * Sunday', () => {
     sendMondayMessages()
   }, {
       timezone: "America/Denver"
