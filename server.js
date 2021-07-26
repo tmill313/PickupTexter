@@ -273,6 +273,10 @@ cron.schedule('32 20 * * Sunday', () => {
      }
 });
 
+app.get('/', async (req, res) => {
+    console.log("STAY AWAKE")
+})
+
 
 
   http.createServer(app).listen(port, () => {
