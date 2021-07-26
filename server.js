@@ -199,8 +199,9 @@ cron.schedule('32 20 * * Sunday', () => {
   });
 
   setInterval(function() {
-    http.get("https://pickup-texter.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+      console.log("here")
+    http.get("http://pickup-texter.herokuapp.com");
+}, 3000); // every 5 minutes (300000)
 
 
   app.post('/sms', async (req, res) => {
