@@ -171,28 +171,28 @@ cron.schedule('32 20 * * Sunday', () => {
   });
 
 // Send follow up texts for people who havent responded on Monday
-  cron.schedule('0 9 * * 1', () => {
+  cron.schedule('0 10 * * Monday', () => {
     sendFollowUpMessages("C:C")
   }, {
       timezone: "America/Denver"
   });
 
 // Send follow up texts for people who havent responded on Wednesday
-  cron.schedule('0 9 * * 3', () => {
+  cron.schedule('0 10 * * Wednesday', () => {
     sendFollowUpMessages("D:D")
   }, {
       timezone: "America/Denver"
   });
 
 // Send text confirming if we are playing with how many have confirmed on Monday night
-  cron.schedule('0 22 * * 1', () => {
+  cron.schedule('0 22 * * Monday', () => {
     sendResults("C:C")
   }, {
       timezone: "America/Denver"
   });
 
 // Send text confirming if we are playing with how many have confirmed on Wednesday night
-  cron.schedule('0 22 * * 3', () => {
+  cron.schedule('0 22 * * Wednesday', () => {
     sendResults("D:D")
   }, {
       timezone: "America/Denver"
