@@ -268,7 +268,7 @@ cron.schedule('32 20 * * Sunday', () => {
 //   twiml.message('The Robots are coming! Head for the hills!');
 
   res.writeHead(200);
-  res.end();
+  res.end(twiml.toString());
      }
 });
 
