@@ -185,7 +185,7 @@ cron.schedule('32 20 * * Sunday', () => {
   });
 
 // Send text confirming if we are playing with how many have confirmed on Monday night
-  cron.schedule('0 22 * * Monday', () => {
+  cron.schedule('30 20 * * Monday', () => {
     sendResults("C:C")
   }, {
       timezone: "America/Denver"
@@ -267,8 +267,8 @@ cron.schedule('32 20 * * Sunday', () => {
 
 //   twiml.message('The Robots are coming! Head for the hills!');
 
-//   res.writeHead(200, {'Content-Type': 'text/xml'});
-//   res.end(twiml.toString());
+  res.writeHead(200);
+  res.end();
      }
 });
 
