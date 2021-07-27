@@ -203,7 +203,7 @@ cron.schedule('32 20 * * Sunday', () => {
   }, 1000 * 60 * 20); // every 20 minutes
 
 
-  app.get('/sms', async (req, res) => {
+  app.post('/sms', async (req, res) => {
 
     const auth = new google.auth.GoogleAuth({
         keyFile: "google-credentials.json",
