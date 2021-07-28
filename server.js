@@ -94,7 +94,7 @@ const sendFollowUpMessages = async (range) => {
             console.log(number)
             return twilioClient.messages
             .create({
-               body: 'Hey there sailor! I noticed you never responded about daybreak basketball.  If you are coming tomorrow, respond "no yes" and if you arent, respond "no no". Thanks!',
+               body: 'Hey! I noticed you never responded about daybreak basketball.  If you are coming tomorrow, respond with your availibility for Tuesday first then Thursday which will look like some combo of "yes yes" or "no yes".',
                from: process.env.TWILIO_PHONE_NUMBER,
                to: `+1${number}`
              })
