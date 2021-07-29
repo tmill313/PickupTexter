@@ -192,7 +192,7 @@ cron.schedule('32 20 * * Sunday', () => {
   });
 
 // Send text confirming if we are playing with how many have confirmed on Wednesday night
-  cron.schedule('0 22 * * Wednesday', () => {
+  cron.schedule('30 21 * * Wednesday', () => {
     sendResults("D:D")
   }, {
       timezone: "America/Denver"
