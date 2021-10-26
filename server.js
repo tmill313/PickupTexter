@@ -72,10 +72,10 @@ const sendAnnouncementMessages = async (message) => {
         spreadsheetId,
         range: "Availability!A:A"
     })
-    const testArray = ['8016781687']
+
     const scrubbedRows = await getNumberRows.data.values.map(number => number[0]).filter(num => num !== undefined && num.length === 10)
     Promise.all(
-    testArray.map(number => {
+    scrubbedRows.map(number => {
         console.log(number)
         return twilioClient.messages
         .create({
@@ -262,7 +262,6 @@ cron.schedule('32 20 * * Sunday', () => {
         const bodyArray = reqBody.split(' ')
         bodyArray.shift()
         const joinedBody = bodyArray.join(' ')
-        console.log(joinedBody)
         sendAnnouncementMessages(joinedBody)
     }
      else {
