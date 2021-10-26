@@ -261,9 +261,9 @@ cron.schedule('32 20 * * Sunday', () => {
     } else if (reqBody.includes("announce")) {
         const bodyArray = reqBody.split(' ')
         bodyArray.shift()
-        bodyArray.join(' ')
-        console.log(bodyArray)
-        sendAnnouncementMessages(bodyArray)
+        const joinedBody = bodyArray.join(' ')
+        console.log(joinedBody)
+        sendAnnouncementMessages(joinedBody)
     }
      else {
     const getRows = await googleSheets.spreadsheets.values.get({
