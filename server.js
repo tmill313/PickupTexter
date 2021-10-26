@@ -56,6 +56,7 @@ const sendMondayMessages = async () => {
 }
 
 const sendAnnouncementMessages = async ({message}) => {
+    console.log(message)
 
     const auth = new google.auth.GoogleAuth({
         keyFile: "google-credentials.json",
