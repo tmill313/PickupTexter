@@ -144,36 +144,19 @@ const sendResults = async (range) => {
     const isNotEnoughMessage = `Hey! Looks like we don't have enough, so we won't be playing tomorrow.  Only ${attendingCount} brave souls committed & you are one of them.  See you next time! Link to sheet -> https://docs.google.com/spreadsheets/d/1R6eVcbvLk6cjbcBsEJzEDrinbZzUcsn-k5xoL1EYOyE/`
 
     const message = arePlaying ? isEnoughMessage : isNotEnoughMessage
-    console.log('outside promise')
-    console.log(getTuesdayRows.data.values)
-    console.log(scrubbedNumbers)
-//     Promise.all(
-//         scrubbedNumbers.map(number => {
-//             console.log(number)
-//             return twilioClient.messages
-//             .create({
-//                body: message,
-//                from: process.env.TWILIO_PHONE_NUMBER,
-//                to: `+1${number}`
-//              })
-//             .then(message => console.log(message.sid));
-//         })
-//         ).catch(err => console.log(err))
-    
-//         Promise.all(
-//         testNumber.map(number => {
-//             console.log(number)
-//             return twilioClient.messages
-//             .create({
-//                body: message,
-//                from: process.env.TWILIO_PHONE_NUMBER,
-//                to: `+1${number}`
-//              })
-//             .then(message => console.log(message.sid));
-//         })
-//         ).catch(err => console.log(err))
 
-
+    Promise.all(
+        scrubbedNumbers.map(number => {
+            console.log(number)
+            return twilioClient.messages
+            .create({
+               body: message,
+               from: process.env.TWILIO_PHONE_NUMBER,
+               to: `+1${number}`
+             })
+            .then(message => console.log(message.sid));
+        })
+        ).catch(err => console.log(err))
 }
 
 
@@ -233,10 +216,8 @@ cron.schedule('32 20 * * Sunday', () => {
 
     // Here to trigger results if they may have changed.  Format should be "trigger tuesday" or "trigger thursday"
     if (reqBody.includes("trigger")) {
-        console.log('trigger')
         const bodyArray = reqBody.split(' ')
         if(bodyArray[1] === "tuesday") {
-            console.log('tuesday')
             sendResults("C:C")
         } else if(bodyArray[1] === 'thursday') {
             sendResults("D:D")
@@ -291,20 +272,6 @@ cron.schedule('32 20 * * Sunday', () => {
 
 app.get('/', async (req, res) => {
     res.send("AWAKE")
-    const testNumber = ['8016781687']
-    
-            Promise.all(
-        testNumber.map(number => {
-            console.log(number)
-            return twilioClient.messages
-            .create({
-               body: 'yoyoyo',
-               from: process.env.TWILIO_PHONE_NUMBER,
-               to: `+1${number}`
-             })
-            .then(message => console.log(message.sid));
-        })
-        ).catch(err => console.log(err))
 })
 
 
