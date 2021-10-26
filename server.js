@@ -147,7 +147,6 @@ const sendResults = async (range) => {
     console.log('outside promise')
     Promise.all(
         console.log('inside promise')
-        console.log(scrubbedNumbers)
         scrubbedNumbers.map(number => {
             console.log(number)
             return twilioClient.messages
