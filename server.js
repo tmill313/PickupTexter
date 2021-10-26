@@ -146,7 +146,6 @@ const sendResults = async (range) => {
     const message = arePlaying ? isEnoughMessage : isNotEnoughMessage
     console.log('outside promise')
     Promise.all(
-        console.log('inside promise')
         scrubbedNumbers.map(number => {
             console.log(number)
             return twilioClient.messages
