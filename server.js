@@ -135,7 +135,7 @@ const sendResults = async (range) => {
         }
     }
 
-    const scrubbedNumbers = await getNumberRows.data.values.map(number => number[0]).filter((number, index) => number !== undefined && indexes.includes(index + 1))
+    const scrubbedNumbers = await getNumberRows.data.values.map(number => number[0]).filter((number, index) => number !== undefined && number.length === 9 && indexes.includes(index + 1))
     const attendingCount = indexes.length
 
     const arePlaying = attendingCount >= 10
@@ -146,18 +146,19 @@ const sendResults = async (range) => {
     const message = arePlaying ? isEnoughMessage : isNotEnoughMessage
     console.log('outside promise')
     console.log(getNumberRows.data.values)
-    Promise.all(
-        scrubbedNumbers.map(number => {
-            console.log(number)
-            return twilioClient.messages
-            .create({
-               body: message,
-               from: process.env.TWILIO_PHONE_NUMBER,
-               to: `+1${number}`
-             })
-            .then(message => console.log(message.sid));
-        })
-        ).catch(err => console.log(err))
+    console.log(scrubbedNumbers)
+//     Promise.all(
+//         scrubbedNumbers.map(number => {
+//             console.log(number)
+//             return twilioClient.messages
+//             .create({
+//                body: message,
+//                from: process.env.TWILIO_PHONE_NUMBER,
+//                to: `+1${number}`
+//              })
+//             .then(message => console.log(message.sid));
+//         })
+//         ).catch(err => console.log(err))
     
 //         Promise.all(
 //         testNumber.map(number => {
