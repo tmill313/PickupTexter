@@ -55,6 +55,39 @@ const sendMondayMessages = async () => {
 
 }
 
+const sendAnnouncementMessages = async ({message}) => {
+
+    const auth = new google.auth.GoogleAuth({
+        keyFile: "google-credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets"
+    })
+
+    const client = await auth.getClient()
+    const googleSheets = google.sheets({version: "v4", auth: client})
+    const spreadsheetId = "1R6eVcbvLk6cjbcBsEJzEDrinbZzUcsn-k5xoL1EYOyE"
+
+    const getNumberRows = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Availability!A:A"
+    })
+    const testArray = ['8016781687']
+    const scrubbedRows = await getNumberRows.data.values.map(number => number[0]).filter(num => num !== undefined && num.length === 10)
+    Promise.all(
+    testArray.map(number => {
+        console.log(number)
+        return twilioClient.messages
+        .create({
+           body: message,
+           from: process.env.TWILIO_PHONE_NUMBER,
+           to: `+1${number}`
+         })
+        .then(message => console.log(message.sid));
+    })
+    ).catch(err => console.log(err))
+
+}
+
 const sendFollowUpMessages = async (range) => {
 
     const auth = new google.auth.GoogleAuth({
@@ -224,6 +257,11 @@ cron.schedule('32 20 * * Sunday', () => {
         } else {
             return
         }
+    } else if (reqBody.includes("announce")) {
+        const bodyArray = reqBody.split(' ')
+        bodyArray.shift()
+        bodyArray.join(',')
+        sendAnnouncementMessages(bodyArray)
     }
      else {
     const getRows = await googleSheets.spreadsheets.values.get({
