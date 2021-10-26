@@ -146,7 +146,7 @@ const sendResults = async (range) => {
     const message = arePlaying ? isEnoughMessage : isNotEnoughMessage
     console.log('outside promise')
     console.log(getTuesdayRows.data.values)
-    console.log(scrubbedTuesdayRows)
+    console.log(scrubbedNumbers)
 //     Promise.all(
 //         scrubbedNumbers.map(number => {
 //             console.log(number)
