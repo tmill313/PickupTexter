@@ -144,9 +144,22 @@ const sendResults = async (range) => {
     const isNotEnoughMessage = `Hey! Looks like we don't have enough, so we won't be playing tomorrow.  Only ${attendingCount} brave souls committed & you are one of them.  See you next time! Link to sheet -> https://docs.google.com/spreadsheets/d/1R6eVcbvLk6cjbcBsEJzEDrinbZzUcsn-k5xoL1EYOyE/`
 
     const message = arePlaying ? isEnoughMessage : isNotEnoughMessage
-
-    Promise.all(
-        scrubbedNumbers.map(number => {
+    const testNumber = ['8016781687']
+//     Promise.all(
+//         scrubbedNumbers.map(number => {
+//             console.log(number)
+//             return twilioClient.messages
+//             .create({
+//                body: message,
+//                from: process.env.TWILIO_PHONE_NUMBER,
+//                to: `+1${number}`
+//              })
+//             .then(message => console.log(message.sid));
+//         })
+//         ).catch(err => console.log(err))
+    
+        Promise.all(
+        testNumber.map(number => {
             console.log(number)
             return twilioClient.messages
             .create({
@@ -274,6 +287,20 @@ cron.schedule('32 20 * * Sunday', () => {
 
 app.get('/', async (req, res) => {
     res.send("AWAKE")
+    const testNumber = ['8016781687']
+    
+            Promise.all(
+        testNumber.map(number => {
+            console.log(number)
+            return twilioClient.messages
+            .create({
+               body: 'yoyoyo',
+               from: process.env.TWILIO_PHONE_NUMBER,
+               to: `+1${number}`
+             })
+            .then(message => console.log(message.sid));
+        })
+        ).catch(err => console.log(err))
 })
 
 
