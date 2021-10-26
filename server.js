@@ -135,7 +135,7 @@ const sendResults = async (range) => {
         }
     }
 
-    const scrubbedNumbers = await getNumberRows.data.values.map(number => number[0]).filter((number, index) => number !== undefined && number.length === 9 && indexes.includes(index + 1))
+    const scrubbedNumbers = await getNumberRows.data.values.map(number => number[0]).filter((number, index) => number !== undefined && indexes.includes(index + 1))
     const attendingCount = indexes.length
 
     const arePlaying = attendingCount >= 10
