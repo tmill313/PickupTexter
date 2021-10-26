@@ -123,7 +123,7 @@ const sendResults = async (range) => {
     const getTuesdayRows = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: 'Availability!C:C'
+        range: `Availability!${range}`
     })
 
     const scrubbedTuesdayRows = await getTuesdayRows.data.values.map(response => response[0])
